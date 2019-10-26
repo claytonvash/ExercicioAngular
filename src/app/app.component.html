@@ -1,0 +1,68 @@
+<input #box placeholder="digite um nome" (keyup)="buscar(box.value)" />
+<br>
+<input #parametroid placeholder="digite um id" />
+<button (click)="retorno = buscarId(parametroid.value)">Buscar id</button>
+<br>
+<input #percentual placeholder="digite o percentual" />
+<button (click)="aumentarSalario(percentual.value)">Aumentar Salario</button>
+<br>
+<input #criterio placeholder="digite um criterio de busca" (keyup)="resposta = buscaCampos(criterio.value)" />
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Salario</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pessoa of pessoas,let i = index">
+      <td>{{pessoa.nome}}</td>
+      <td>{{pessoa.salario}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      Salário total = {{getValorTotal()}}
+    </tr>
+  </tfoot>
+</table>
+<p *ngIf="nomes.length == 0"> Nenhum nome encontrado usando ngif</p>
+<p [hidden]="nomes.length > 0"> Nenhum nome encontrado usando hidden</p>
+
+<ul *ngFor="let nomeFiltro of nomesFiltro">
+  <li>{{nomesFiltro}}</li>
+</ul>
+<p *ngIf="retorno != undefined">{{retorno.id}} - {{retorno.nome}}</p>
+
+<ul *ngFor="let r of resposta">
+  <li>{{r.id}} - {{r.nome}} - {{r.salario}}</li>
+</ul>
+<br>
+<br>
+<hr>
+<h1>OBSERVER</h1>
+<input #campo placeholder="digite um nome" />
+<button (click)="enviar(campo.value)">Enviar</button>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let nome of nomes,let i = index">
+      <td>{{nome}}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+     Table utilizando observer
+    </tr>
+  </tfoot>
+</table>
+
+
+<router-outlet></router-outlet>
